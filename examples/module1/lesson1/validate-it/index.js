@@ -1,3 +1,12 @@
+function isNumValid(value) {
+  const number = Number(value);
+  return (
+    Number.isInteger(number) &&
+    number > 0 &&
+    (number < 100) && (number % 2 === 0)
+  );
+}
+
 function validator() {
   const input = document.getElementById('input');
   const button = document.getElementById('button');
@@ -5,25 +14,10 @@ function validator() {
   const result = document.getElementById('result');
 
   button.addEventListener('click', () => {
-    if (input.value) {
-      if (Number.isInteger(input.value)) {
-        if (
-          Number(input.value) > 0 &&
-          Number(input.value) < 100 &&
-          Number(input.value) % 2 === 0
-        ) {
-          result.innerHTML = 'Valid';
-        } else {
-          result.innerHTML = 'Invalid';
-        }
-        result.innerHTML = 'Valid';
-      } else {
-        result.innerHTML = 'Invalid';
-      }
-    } else {
-      result.innerHTML = 'Invalid';
-    }
+    const numCheck = isNumValid(input.value) ? 'Valid' : 'Invalid';
+    result.innerHTML = numCheck;
   });
+
 
   button2.addEventListener('click', () => {
     input.value = '';
