@@ -4,18 +4,18 @@ import { Link } from 'react-router-dom';
 import { IoMdAdd, IoMdClose, IoMdRemove } from 'react-icons/io';
 import { removeFromCart, addToCart, decreaseAmount } from '../state/cartSlice';
 import { CartItem as CartItemType } from '../types/CartItem';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../hooks/rtk';
 
 const CartItem = ({ item }: { item: CartItemType }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const handleAddToCart = () => {
     dispatch(addToCart(item));
   };
   const handleRemoveFromCart = () => {
-    dispatch(removeFromCart(id));
+    dispatch(removeFromCart(item.id));
   };
   const handleDecreaseAmount = () => {
-    dispatch(decreaseAmount(id));
+    dispatch(decreaseAmount(item.id));
   };
 
   const { id, title, image, price, amount } = item;
@@ -24,7 +24,7 @@ const CartItem = ({ item }: { item: CartItemType }) => {
     <div className="flex gap-x-4 py-2 lg:px-6 border-b border-gray-200 w-full font-light text-gray-500">
       <div className="w-full min-h-[150px] flex items-center gap-x-4">
         <Link to={`/product/${id}`}>
-          <img className="max-w-[80px]" src={image} alt="" />
+          <img className="max-w-[80px]" src={image} alt={title} />
         </Link>
         <div className="w-full flex flex-col">
           <div className="flex justify-between mb-2">
