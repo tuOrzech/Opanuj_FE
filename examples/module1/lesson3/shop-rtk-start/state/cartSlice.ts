@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice, createSelector } from '@reduxjs/toolkit';
 import { CartItem } from '../types/CartItem';
 import { RootState } from '../store';
 import { Product } from '../types/Product';
@@ -60,5 +60,6 @@ export const selectItemAmount = (state: RootState) =>
   state.cart.items.reduce((accumulator, currentItem) => {
     return accumulator + currentItem.amount;
   }, 0);
+  export const selectTotalPrice = createSelector([(state:RootState) => state.cart.items], items => items.reduce((total,item) => total + item.price * item.amount, 0));
 
 export default cartSlice.reducer;
