@@ -56,7 +56,7 @@ jobs:
           ca-domain-owner: ${{ env.AWS_CA_DOMAIN_OWNER }}
 
       - name: 'Automated Version Bump'
-        uses: 'phips28/gh-action-bump-version@master'
+        uses: 'tuOrzech/Opanuj_FE@practice'
         env:
           GITHUB_TOKEN: ${{ secrets.GH_REPO_ACCESS_TOKEN }}
           PACKAGEJSON_DIR: ${{ env.LIB_PACKAGEJSON_DIR }}
