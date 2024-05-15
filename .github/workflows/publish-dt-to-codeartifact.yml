@@ -15,10 +15,10 @@ on:
 
 env:
   AWS_CA_TOKEN: ${{ secrets.AWS_CA_TOKEN }}
-  AWS_CA_REGION: eu-central-1
-  AWS_CA_DOMAIN: tuorzech
-  AWS_CA_REPOSITORY: tuorzech-for-opanuj-frontend
-  AWS_CA_DOMAIN_OWNER: 590183693949
+  AWS_CA_REGION: ${{ secrets.AWS_CA_REGION }}
+  AWS_CA_DOMAIN: ${{ secrets.AWS_CA_DOMAIN }}
+  AWS_CA_REPOSITORY: ${{ secrets.AWS_CA_REPOSITORY }}
+  AWS_CA_DOMAIN_OWNER: ${{ secrets.AWS_CA_DOMAIN_OWNER }}
   LIB_PACKAGEJSON_DIR: examples/module4/lesson2/design-tokens
 
 jobs:
@@ -69,5 +69,5 @@ jobs:
           REGISTRY_BASE_URL="${{ env.AWS_CA_DOMAIN }}-${{ env.AWS_CA_DOMAIN_OWNER }}.d.codeartifact.${{ env.AWS_CA_REGION }}.amazonaws.com/npm/${{ env.AWS_CA_REPOSITORY }}/"
           npm config set registry "https://$REGISTRY_BASE_URL"
           npm set "//$REGISTRY_BASE_URL:_authToken=${{ env.AWS_CA_TOKEN }}"
-          aws codeartifact login --tool npm --repository ${{ env.AWS_CA_REPOSITORY }} --domain ${{ env.AWS_CA_DOMAIN }} --domain-owner ${{ env.AWS_CA_DOMAIN_OWNER }} --region ${{ env.AWS_CA_REGION }}
+
           npm publish
